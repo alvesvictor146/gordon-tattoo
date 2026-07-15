@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gordon Tattoo | Estúdio de Tatuagem Premium em São Paulo</title>
+    <meta name="description" content="Gordon Tattoo - Estúdio de tatuagem de luxo em São Paulo. Especialistas em Blackwork, Realismo e Fine Line. Transformamos ideias em obras de arte exclusivas.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sections.css">
+    
+    <!-- FontAwesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader__logo-text">GORDON<span>.</span></div>
+        <div class="loader__progress">
+            <div class="loader__progress-fill" id="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav__logo">Gordon<span class="nav__logo-dot"></span></a>
+        
+        <ul class="nav__links">
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#gallery">Trabalhos</a></li>
+            <li><a href="#styles">Estilos</a></li>
+            <li><a href="#differentials">Diferenciais</a></li>
+            <li><a href="#process">Processo</a></li>
+            <li><a href="#location">Localização</a></li>
+        </ul>
+        
+        <a href="https://wa.me/5511999999999" target="_blank" class="nav__cta">Agendar Orçamento</a>
+        
+        <div class="nav__hamburger" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="nav__mobile" id="nav-mobile">
+        <a href="#about">Sobre</a>
+        <a href="#gallery">Trabalhos</a>
+        <a href="#styles">Estilos</a>
+        <a href="#differentials">Diferenciais</a>
+        <a href="#process">Processo</a>
+        <a href="#location">Localização</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero__bg">
+                <video id="hero-video" class="hero__bg-image" autoplay muted playsinline>
+                    <source src="Man_tattooing_woman's_back_1080p_202607151209.mp4" type="video/mp4">
+                </video>
+                <div class="hero__grain"></div>
+                <div class="hero__overlay"></div>
+            </div>
+            
+            <script>
+                // Script para o hero (Vídeo em loop e Áudio)
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Lógica de loop de vídeo
+                    const video = document.getElementById('hero-video');
+                    if (video) {
+                        const sources = [
+                            "Man_tattooing_woman's_back_1080p_202607151209.mp4",
+                            "Man_tattooing_woman's_back_202607151207.mp4"
+                        ];
+                        let currentVideo = 0;
+                        
+                        video.addEventListener('ended', () => {
+                            currentVideo = (currentVideo + 1) % sources.length;
+                            video.src = sources[currentVideo];
+                            video.play();
+                        });
+                    }
+
+                    // Lógica de áudio e mute toggle
+                    const audio = document.getElementById('bg-audio');
+                    const soundBtn = document.getElementById('sound-toggle');
+                    const soundIcon = document.getElementById('sound-icon');
+                    
+                    if (soundBtn && audio) {
+                        // Tenta dar autoplay no áudio
+                        audio.volume = 0.5; // Volume a 50%
+                        
+                        let isMuted = false;
+                        
+                        soundBtn.addEventListener('click', () => {
+                            if (audio.paused) {
+                                // Se estiver pausado por bloqueio do navegador, damos play no primeiro clique
+                                audio.play();
+                                isMuted = false;
+                                soundIcon.className = 'fas fa-volume-up';
+                            } else {
+                                // Toggle de mute
+                                isMuted = !isMuted;
+                                audio.muted = isMuted;
+                                
+                                if (isMuted) {
+                                    soundIcon.className = 'fas fa-volume-mute';
+                                } else {
+                                    soundIcon.className = 'fas fa-volume-up';
+                                }
+                            }
+                        });
+                    }
+                });
+            </script>
+            
+            <div class="hero__bg-word float--slow">ART</div>
+            
+            <div class="hero__content">
+                <div class="hero__eyebrow">Estúdio Premium • São Paulo</div>
+                <h1 class="hero__title">
+                    Gordon <span class="hero__title-gold">Tattoo</span>
+                </h1>
+                <h2 class="hero__subtitle">A arte definitiva gravada na pele.</h2>
+                <p class="hero__description">
+                    Transformamos ideias em obras de arte exclusivas através de técnicas refinadas, atendimento personalizado e um ambiente pensado para quem busca excelência.
+                </p>
+                
+                <div class="hero__buttons">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn btn--primary magnetic">
+                        <i class="fab fa-whatsapp btn-icon"></i> Agendar Orçamento
+                    </a>
+                    <a href="#gallery" class="btn btn--secondary magnetic">Ver Trabalhos</a>
+                </div>
+            </div>
+            
+            <div class="hero__stats">
+                <div class="hero__stat-item">
+                    <div class="hero__stat-number">10<span>+</span></div>
+                    <div class="hero__stat-label">Anos de<br>Experiência</div>
+                </div>
+                
+                <!-- Controle de Som -->
+                <button id="sound-toggle" class="sound-toggle magnetic">
+                    <i class="fas fa-volume-up" id="sound-icon"></i>
+                </button>
+
+                <div class="hero__stat-item">
+                    <div class="hero__stat-number">5k<span>+</span></div>
+                    <div class="hero__stat-label">Clientes<br>Satisfeitos</div>
+                </div>
+            </div>
+            
+            <div class="hero__scroll">
+                <div class="hero__scroll-text">Scroll</div>
+                <div class="hero__scroll-line">
+                    <div class="hero__scroll-dot"></div>
+                </div>
+            </div>
+
+            <audio id="bg-audio" loop autoplay>
+                <source src="Nocturnal Shadows (trim 0_33-2_54).mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+        <!-- Marquee -->
+        <div id="marquee-section">
+            <div class="marquee">
+                <div class="marquee__inner">
+                    <span class="marquee__item">Blackwork</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Realism</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Fine Line</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Oriental</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Old School</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Geometric</span>
+                    <span class="marquee__separator">•</span>
+                    <!-- Duplicate for loop -->
+                    <span class="marquee__item">Blackwork</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Realism</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Fine Line</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Oriental</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Old School</span>
+                    <span class="marquee__separator">•</span>
+                    <span class="marquee__item">Geometric</span>
+                    <span class="marquee__separator">•</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="bg-word about__bg-word" data-speed="0.8">INK</div>
+            
+            <div class="about__container">
+                <div class="about__content">
+                    <div class="section-label reveal-left">O Estúdio</div>
+                    <h2 class="about__title reveal">Elevando <em>Tatuagens</em> a Obras de Arte.</h2>
+                    <div class="gold-line reveal"></div>
+                    <p class="about__text reveal">
+                        O Gordon Tattoo não é apenas um estúdio, é um santuário para a arte corporal. Nossa missão é oferecer uma experiência de luxo desde o primeiro contato até a cicatrização final.
+                    </p>
+                    <p class="about__text reveal">
+                        Combinamos técnicas de nível internacional com um ambiente projetado para conforto, segurança e inspiração. Cada projeto é único, desenhado exclusivamente para você.
+                    </p>
+                    
+                    <div class="about__signature reveal">
+                        <div>
+                            <div class="about__signature-name">Gordon</div>
+                            <div class="about__signature-role">Fundador & Lead Artist</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about__images">
+                    <div class="about__img about__img-1 reveal-scale">
+                        <video src="Man_tattooing_client_at_convention_202607151354.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="about__img about__img-2 reveal-scale" style="transition-delay: 0.2s;">
+                        <img src="Man_tattooing_client_at_convention_202607151333.jpeg" alt="Premium Studio Interior">
+                    </div>
+                    <div class="about__img-badge pulse-glow reveal" style="transition-delay: 0.4s;">
+                        #01 <span>Studio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery / Carousel Section -->
+        <section id="gallery">
+            <div class="gallery__header reveal">
+                <div>
+                    <div class="section-label">Portfólio</div>
+                    <h2 class="gallery__title">Últimos <em>Trabalhos</em></h2>
+                </div>
+                <div class="gallery__count">Exibindo projetos selecionados</div>
+            </div>
+            
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="horizontal-carousel">
+                    <!-- Carousel Items -->
+                    <div class="carousel-item carousel-item--lg">
+                        <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_blackwork_sleeve_1784131884663.png" alt="Blackwork Sleeve">
+                        <div class="carousel-item__overlay"></div>
+                        <div class="carousel-item__caption">
+                            <div class="carousel-item__style">Blackwork Sleeve</div>
+                            <div class="carousel-item__tag">Braço Completo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item carousel-item--sm" style="margin-top: 100px;">
+                        <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_fineline_floral_1784131894553.png" alt="Fine Line Floral">
+                        <div class="carousel-item__overlay"></div>
+                        <div class="carousel-item__caption">
+                            <div class="carousel-item__style">Fine Line Floral</div>
+                            <div class="carousel-item__tag">Antebraço</div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item carousel-item--lg" style="margin-top: -40px;">
+                        <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_oriental_dragon_1784131973168.png" alt="Oriental Dragon">
+                        <div class="carousel-item__overlay"></div>
+                        <div class="carousel-item__caption">
+                            <div class="carousel-item__style">Oriental Dragon</div>
+                            <div class="carousel-item__tag">Costas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item carousel-item--sm" style="margin-top: 60px;">
+                        <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_artist_working_1784131389872.png" alt="Artist Detail">
+                        <div class="carousel-item__overlay"></div>
+                        <div class="carousel-item__caption">
+                            <div class="carousel-item__style">Process Detail</div>
+                            <div class="carousel-item__tag">Estúdio</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item carousel-item--lg" style="margin-top: 20px;">
+                        <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_blackwork_sleeve_1784131884663.png" alt="Blackwork Detail">
+                        <div class="carousel-item__overlay"></div>
+                        <div class="carousel-item__caption">
+                            <div class="carousel-item__style">Geometric Mandala</div>
+                            <div class="carousel-item__tag">Ombro</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="gallery__drag-hint reveal">
+                <span>Scroll para navegar</span>
+                <div class="gallery__drag-line"></div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </section>
+
+        <!-- Styles Section -->
+        <section id="styles">
+            <div class="bg-word styles__bg-word" data-speed="1.2">STYLE</div>
+            
+            <div class="styles__header reveal">
+                <div class="section-label" style="justify-content: center;">Especialidades</div>
+                <h2 class="styles__title">Nossa <em>Expertise</em></h2>
+                <p class="styles__subtitle">Dominamos diversas técnicas para garantir que sua visão seja executada com perfeição absoluta.</p>
+            </div>
+            
+            <div class="styles__grid">
+                <!-- Style Cards -->
+                <div class="style-card reveal-blur" style="transition-delay: 0.1s;">
+                    <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_blackwork_sleeve_1784131884663.png" alt="Blackwork" class="style-card__img">
+                    <div class="style-card__overlay"></div>
+                    <div class="style-card__content">
+                        <h3 class="style-card__name">Blackwork</h3>
+                        <div class="style-card__line"></div>
+                        <p class="style-card__desc">Contraste extremo, linhas precisas e sombras intensas apenas com tinta preta.</p>
+                    </div>
+                </div>
+                
+                <div class="style-card reveal-blur" style="transition-delay: 0.2s;">
+                    <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_fineline_floral_1784131894553.png" alt="Fine Line" class="style-card__img">
+                    <div class="style-card__overlay"></div>
+                    <div class="style-card__content">
+                        <h3 class="style-card__name">Fine Line</h3>
+                        <div class="style-card__line"></div>
+                        <p class="style-card__desc">Linhas extremamente finas e delicadas, ideais para florais e minimalismo.</p>
+                    </div>
+                </div>
+                
+                <div class="style-card reveal-blur" style="transition-delay: 0.3s;">
+                    <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_oriental_dragon_1784131973168.png" alt="Oriental" class="style-card__img">
+                    <div class="style-card__overlay"></div>
+                    <div class="style-card__content">
+                        <h3 class="style-card__name">Oriental</h3>
+                        <div class="style-card__line"></div>
+                        <p class="style-card__desc">A tradição milenar japonesa, com dragões, carpas e flores de lótus.</p>
+                    </div>
+                </div>
+                
+                <div class="style-card reveal-blur" style="transition-delay: 0.4s;">
+                    <img src="C:/Users/user0636/.gemini/antigravity-ide/brain/3e874581-6a78-46bd-970a-4f366eff1ade/tattoo_artist_working_1784131389872.png" alt="Realism" class="style-card__img">
+                    <div class="style-card__overlay"></div>
+                    <div class="style-card__content">
+                        <h3 class="style-card__name">Realism</h3>
+                        <div class="style-card__line"></div>
+                        <p class="style-card__desc">Reprodução fotográfica na pele com sombras e texturas impressionantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Differentials Section -->
+        <section id="differentials">
+            <div class="diff__container">
+                <div class="diff__header">
+                    <div>
+                        <div class="section-label reveal">Experiência</div>
+                        <h2 class="diff__title reveal">O Padrão <em>Gordon</em></h2>
+                    </div>
+                    <p class="diff__intro reveal">
+                        Não entregamos apenas uma tatuagem. Entregamos uma experiência completa focada em biossegurança, conforto e exclusividade.
+                    </p>
+                </div>
+                
+                <div class="diff__grid">
+                    <div class="diff-card reveal" style="transition-delay: 0.1s;">
+                        <i class="fas fa-gem diff-card__icon text-gold"></i>
+                        <h4 class="diff-card__title">Atendimento Exclusivo</h4>
+                        <p class="diff-card__text">Um cliente por vez. O estúdio é dedicado inteiramente a você durante a sua sessão.</p>
+                    </div>
+                    <div class="diff-card reveal" style="transition-delay: 0.2s;">
+                        <i class="fas fa-pencil-ruler diff-card__icon text-gold"></i>
+                        <h4 class="diff-card__title">Projeto Personalizado</h4>
+                        <p class="diff-card__text">Nenhum desenho é copiado. Criamos artes únicas baseadas na sua anatomia e ideias.</p>
+                    </div>
+                    <div class="diff-card reveal" style="transition-delay: 0.3s;">
+                        <i class="fas fa-shield-alt diff-card__icon text-gold"></i>
+                        <h4 class="diff-card__title">Biossegurança</h4>
+                        <p class="diff-card__text">Padrões hospitalares de esterilização. Todo o material que entra em contato com a pele é descartável.</p>
+                    </div>
+                    <div class="diff-card reveal" style="transition-delay: 0.4s;">
+                        <i class="fas fa-box-open diff-card__icon text-gold"></i>
+                        <h4 class="diff-card__title">Materiais Premium</h4>
+                        <p class="diff-card__text">Utilizamos as melhores tintas veganas e equipamentos importados do mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process">
+            <div class="process__container">
+                <div class="process__header reveal">
+                    <div class="section-label" style="justify-content: center;">Jornada</div>
+                    <h2 class="process__title">O <em>Processo</em></h2>
+                </div>
+                
+                <div class="process__timeline" id="timeline-container">
+                    <div class="process__line">
+                        <div class="process__line-fill" id="timeline-line"></div>
+                    </div>
+                    
+                    <div class="process-step" data-step="1">
+                        <div class="process-step__dot"></div>
+                        <div class="process-step__number">01</div>
+                        <h3 class="process-step__title">Consulta</h3>
+                        <p class="process-step__text">Conversamos sobre suas ideias, referências e a melhor localização para o projeto. Avaliamos a anatomia para um caimento perfeito.</p>
+                    </div>
+                    
+                    <div class="process-step" data-step="2">
+                        <div class="process-step__dot"></div>
+                        <div class="process-step__number">02</div>
+                        <h3 class="process-step__title">Design</h3>
+                        <p class="process-step__text">Desenvolvimento da arte exclusiva. O desenho é refinado até atingir a excelência e atender exatamente o que você imaginou.</p>
+                    </div>
+                    
+                    <div class="process-step" data-step="3">
+                        <div class="process-step__dot"></div>
+                        <div class="process-step__number">03</div>
+                        <h3 class="process-step__title">Sessão</h3>
+                        <p class="process-step__text">Execução da tatuagem em nosso ambiente climatizado e premium, com foco total no seu conforto e na precisão da arte.</p>
+                    </div>
+                    
+                    <div class="process-step" data-step="4">
+                        <div class="process-step__dot"></div>
+                        <div class="process-step__number">04</div>
+                        <h3 class="process-step__title">Aftercare</h3>
+                        <p class="process-step__text">Acompanhamento completo da cicatrização. Fornecemos instruções detalhadas e produtos premium para cuidados pós-tatuagem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta">
+            <div class="bg-word cta__bg-word-1 float">INKED</div>
+            
+            <div class="cta__container reveal">
+                <div class="cta__eyebrow">Pronto para começar?</div>
+                <h2 class="cta__title">Sua próxima tatuagem<br>começa <em>aqui.</em></h2>
+                <p class="cta__text">Nossa agenda é limitada. Solicite um orçamento personalizado e reserve sua data diretamente pelo WhatsApp.</p>
+                <a href="https://wa.me/5511999999999" target="_blank" class="cta__btn magnetic">
+                    <i class="fab fa-whatsapp"></i> <span>Agendar pelo WhatsApp</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location">
+            <div class="location__container">
+                <div class="location__header reveal">
+                    <div class="section-label" style="justify-content: center;">Visite-nos</div>
+                    <h2 class="location__title">Nossa <em>Casa</em></h2>
+                </div>
+                
+                <div class="location__grid">
+                    <div class="location__map reveal">
+                        <!-- Mapa com endereço real -->
+                        <iframe src="https://maps.google.com/maps?q=R.%20S%C3%ADlvio%20Barbini,%20595%20-%20Conj.%20Res.%20Jos%C3%A9%20Bonif%C3%A1cio,%20S%C3%A3o%20Paulo%20-%20SP,%2008250-650&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <div class="location__card reveal">
+                        <div class="location__info-item">
+                            <i class="fas fa-map-marker-alt location__info-icon text-gold"></i>
+                            <div>
+                                <div class="location__info-label">Endereço</div>
+                                <div class="location__info-value">Estúdio Hades Tattoo<br>R. Sílvio Barbini, 595 - Conj. Res. José Bonifácio<br>São Paulo - SP, 08250-650</div>
+                            </div>
+                        </div>
+                        
+                        <div class="location__info-item">
+                            <i class="fab fa-whatsapp location__info-icon text-gold"></i>
+                            <div>
+                                <div class="location__info-label">WhatsApp</div>
+                                <div class="location__info-value"><a href="https://wa.me/5511999999999">+55 11 99999-9999</a></div>
+                            </div>
+                        </div>
+                        
+                        <div class="location__info-item">
+                            <i class="far fa-clock location__info-icon text-gold"></i>
+                            <div>
+                                <div class="location__info-label">Horário</div>
+                                <div class="location__info-value">Seg - Sáb: 10h às 20h<br>Atendimento com hora marcada</div>
+                            </div>
+                        </div>
+                        
+                        <div class="location__info-item">
+                            <i class="fab fa-instagram location__info-icon text-gold"></i>
+                            <div>
+                                <div class="location__info-label">Instagram</div>
+                                <div class="location__info-value"><a href="https://instagram.com/gordontattoo_" target="_blank">@gordontattoo_</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer__container">
+            <div class="footer__top">
+                <div>
+                    <a href="#" class="footer__logo">Gordon<span>.</span></a>
+                    <p class="footer__tagline">A arte definitiva gravada na pele. Estúdio de tatuagem de luxo em São Paulo especializado em exclusividade.</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com/gordontattoo_" target="_blank" class="footer__social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer__social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/5511999999999" target="_blank" class="footer__social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="footer__col-title">Navegação</div>
+                    <ul class="footer__links">
+                        <li><a href="#about">Sobre o Estúdio</a></li>
+                        <li><a href="#gallery">Portfólio</a></li>
+                        <li><a href="#styles">Especialidades</a></li>
+                        <li><a href="#process">Como Funciona</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="footer__col-title">Estilos</div>
+                    <ul class="footer__links">
+                        <li><a href="#">Blackwork</a></li>
+                        <li><a href="#">Realismo</a></li>
+                        <li><a href="#">Fine Line</a></li>
+                        <li><a href="#">Oriental</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="footer__col-title">Contato</div>
+                    <ul class="footer__links">
+                        <li><a href="https://wa.me/5511999999999">Solicitar Orçamento</a></li>
+                        <li><a href="#location">Localização</a></li>
+                        <li><a href="#">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <div class="footer__copyright">&copy; 2026 Gordon Tattoo. Todos os direitos reservados.</div>
+                <div class="footer__credits">Designed with <span>♥</span> for Gordon Tattoo</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts (GSAP & Lenis CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/effects.js"></script>
+</body>
+</html>

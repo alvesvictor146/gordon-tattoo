@@ -1,0 +1,391 @@
+/* ============================================================
+   GORDON TATTOO — ANIMATIONS
+   Keyframes, micro-interactions, effects
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Ken Burns — Hero background */
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  33% { transform: scale(1.06) translate(-1%, 0.5%); }
+  66% { transform: scale(1.03) translate(1%, -1%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+/* Grain texture */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -2%); }
+  20% { transform: translate(2%, 0%); }
+  30% { transform: translate(-1%, 2%); }
+  40% { transform: translate(1%, -1%); }
+  50% { transform: translate(-2%, 1%); }
+  60% { transform: translate(2%, -2%); }
+  70% { transform: translate(-1%, 1%); }
+  80% { transform: translate(1%, 2%); }
+  90% { transform: translate(-2%, -1%); }
+}
+
+/* Floating */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Float slow (for bg words) */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-8px) translateX(4px); }
+}
+
+/* Shimmer gold */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.4); }
+}
+
+/* Scroll indicator */
+@keyframes scrollDown {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+/* Blink cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Line grow */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide left */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Rotate marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Spin slow */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Progress line */
+@keyframes progressLine {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+/* ============================================================
+   HERO ANIMATIONS
+   ============================================================ */
+
+/* Hero image */
+.hero__bg-image {
+  animation: kenBurns 20s ease-in-out infinite;
+}
+
+/* Grain overlay */
+.hero__grain::before {
+  animation: grain 0.4s steps(1) infinite;
+}
+
+/* Scroll indicator */
+.scroll-indicator__dot {
+  animation: scrollDown 1.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   SHIMMER EFFECT (Gold Elements)
+   ============================================================ */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold-matte) 0%,
+    var(--gold-bright) 45%,
+    var(--gold-light) 55%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ============================================================
+   FLOAT ANIMATION
+   ============================================================ */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float--slow {
+  animation: float 10s ease-in-out infinite;
+}
+
+.float--delay-1 { animation-delay: -2s; }
+.float--delay-2 { animation-delay: -4s; }
+
+/* ============================================================
+   GLOW PULSE
+   ============================================================ */
+.pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   MARQUEE / TICKER
+   ============================================================ */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee__inner {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+  gap: 0;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  padding: 0 var(--space-8);
+  user-select: none;
+}
+
+.marquee__separator {
+  color: var(--gold-matte);
+  -webkit-text-stroke: 0;
+}
+
+/* ============================================================
+   NAV TRANSITIONS
+   ============================================================ */
+.nav {
+  transition: background var(--transition-base),
+              padding var(--transition-base),
+              backdrop-filter var(--transition-base);
+}
+
+.nav.scrolled {
+  background: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ============================================================
+   CARD HOVER EFFECTS
+   ============================================================ */
+.card-hover {
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   PROCESS LINE ANIMATION
+   ============================================================ */
+.process-line {
+  transition: height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   TESTIMONIAL CARD
+   ============================================================ */
+.testimonial-card {
+  transition: opacity var(--transition-base),
+              transform var(--transition-base);
+}
+
+/* ============================================================
+   MAGNETIC BUTTON
+   ============================================================ */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   GALLERY CAROUSEL ITEMS
+   ============================================================ */
+.carousel-item {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.03);
+  z-index: 2;
+}
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black-absolute);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.loader__logo {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 0.3em;
+  color: var(--white);
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.3s forwards;
+}
+
+.loader__logo span {
+  color: var(--gold-matte);
+}
+
+.loader__bar-wrapper {
+  width: 200px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.5s forwards;
+}
+
+.loader__bar {
+  height: 100%;
+  background: var(--gold-matte);
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+.page-enter {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* ============================================================
+   HOVER UNDERLINE
+   ============================================================ */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-matte);
+  transition: width var(--transition-base);
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   GLITCH EFFECT (subtle for titles)
+   ============================================================ */
+@keyframes glitch1 {
+  0%, 92%, 100% { clip-path: inset(0 0 100% 0); }
+  94% { clip-path: inset(20% 0 40% 0); transform: translateX(-3px); }
+  96% { clip-path: inset(60% 0 10% 0); transform: translateX(3px); }
+  98% { clip-path: inset(80% 0 5% 0); transform: translateX(-2px); }
+}
+
+/* ============================================================
+   RESPONSIVE ANIMATIONS
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
