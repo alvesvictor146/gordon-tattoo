@@ -10,44 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('gallery');
 
     if (track && container && section) {
-        // Calculate the amount to scroll horizontally
-        // It's the total width of the track minus the container width
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
         
-        function getScrollAmount() {
-            let trackWidth = track.scrollWidth;
-            let containerWidth = container.offsetWidth;
-            return -(trackWidth - containerWidth + 40); // Add a small buffer
-        }
+        if (prevBtn && nextBtn) {
+            const getScrollAmount = () => {
+                const item = track.querySelector('.carousel-item');
+                if (!item) return 300;
+                const gap = parseFloat(getComputedStyle(track).gap) || 24;
+                return item.offsetWidth + gap;
+            };
 
-        const tween = gsap.to(track, {
-            x: getScrollAmount,
-            ease: "none"
-        });
-
-        ScrollTrigger.create({
-            trigger: section,
-            start: "top 10%",
-            end: () => `+=${getScrollAmount() * -1}`,
-            pin: true,
-            animation: tween,
-            scrub: 1,
-            invalidateOnRefresh: true
-        });
-
-        // Individual item parallax within the carousel
-        const items = document.querySelectorAll('.carousel-item img');
-        
-        items.forEach(item => {
-            gsap.to(item, {
-                x: "15%", // Slight counter-movement
-                ease: "none",
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 10%",
-                    end: () => `+=${getScrollAmount() * -1}`,
-                    scrub: 1
-                }
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({
+                    left: -getScrollAmount(),
+                    behavior: 'smooth'
+                });
             });
-        });
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({
+                    left: getScrollAmount(),
+                    behavior: 'smooth'
+                });
+            });
+        }
     }
 });

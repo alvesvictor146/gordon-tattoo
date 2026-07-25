@@ -7,9 +7,9 @@
     <meta name="description" content="Gordon Tattoo - Estúdio de tatuagem de luxo em São Paulo. Especialistas em Blackwork, Realismo e Fine Line. Transformamos ideias em obras de arte exclusivas.">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/index.css?v=3">
+    <link rel="stylesheet" href="css/animations.css?v=3">
+    <link rel="stylesheet" href="css/sections.css?v=3">
     
     <!-- FontAwesome (Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -306,10 +306,9 @@
                 </div>
             </div>
             
-            <div class="gallery__drag-hint reveal">
-                <span>Scroll para navegar</span>
-                <div class="gallery__drag-line"></div>
-                <i class="fas fa-arrow-right"></i>
+            <div class="styles__carousel-controls" style="margin-top: var(--space-4); margin-bottom: var(--space-12);">
+                <button class="styles__carousel-btn" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="styles__carousel-btn" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
@@ -323,46 +322,58 @@
                 <p class="styles__subtitle">Dominamos diversas técnicas para garantir que sua visão seja executada com perfeição absoluta.</p>
             </div>
             
-            <div class="styles__grid">
-                <!-- Style Cards -->
-                <div class="style-card reveal-blur" style="transition-delay: 0.1s;">
-                    <img src="img_blackwork.png" alt="Blackwork" class="style-card__img">
-                    <div class="style-card__overlay"></div>
-                    <div class="style-card__content">
-                        <h3 class="style-card__name">Blackwork</h3>
-                        <div class="style-card__line"></div>
-                        <p class="style-card__desc">Contraste extremo, linhas precisas e sombras intensas apenas com tinta preta.</p>
+            <div class="styles__carousel-container reveal">
+                <div class="styles__carousel-track" id="expertise-carousel">
+                    <!-- Carousel Items: 11 Videos -->
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.51.49.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.04.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.10.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.12.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.21.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.24.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.34.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.43.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.52.55.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.53.06.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
+                    </div>
+                    <div class="style-card style-video-card">
+                        <video src="WhatsApp Video 2026-07-24 at 11.53.15.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <div class="style-card__overlay"></div>
                     </div>
                 </div>
-                
-                <div class="style-card reveal-blur" style="transition-delay: 0.2s;">
-                    <img src="img_fineline.png" alt="Fine Line" class="style-card__img">
-                    <div class="style-card__overlay"></div>
-                    <div class="style-card__content">
-                        <h3 class="style-card__name">Fine Line</h3>
-                        <div class="style-card__line"></div>
-                        <p class="style-card__desc">Linhas extremamente finas e delicadas, ideais para florais e minimalismo.</p>
-                    </div>
-                </div>
-                
-                <div class="style-card reveal-blur" style="transition-delay: 0.3s;">
-                    <img src="img_oriental.png" alt="Oriental" class="style-card__img">
-                    <div class="style-card__overlay"></div>
-                    <div class="style-card__content">
-                        <h3 class="style-card__name">Oriental</h3>
-                        <div class="style-card__line"></div>
-                        <p class="style-card__desc">A tradição milenar japonesa, com dragões, carpas e flores de lótus.</p>
-                    </div>
-                </div>
-                
-                <div class="style-card reveal-blur" style="transition-delay: 0.4s;">
-                    <img src="img_realism.png" alt="Realism" class="style-card__img">
-                    <div class="style-card__overlay"></div>
-                    <div class="style-card__content">
-                        <h3 class="style-card__name">Realism</h3>
-                        <div class="style-card__line"></div>
-                        <p class="style-card__desc">Reprodução fotográfica na pele com sombras e texturas impressionantes.</p>
-                    </div>
+
+                <div class="styles__carousel-controls">
+                    <button class="styles__carousel-btn" id="expertise-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="styles__carousel-btn" id="expertise-next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -572,8 +583,9 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/effects.js"></script>
+    <script src="js/main.js?v=3"></script>
+    <script src="js/carousel.js?v=3"></script>
+    <script src="js/expertise.js?v=3"></script>
+    <script src="js/effects.js?v=3"></script>
 </body>
 </html>
