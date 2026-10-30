@@ -6,13 +6,24 @@
     <title>Gordon Tattoo | Estúdio de Tatuagem Premium em São Paulo</title>
     <meta name="description" content="Gordon Tattoo - Estúdio de tatuagem de luxo em São Paulo. Especialistas em Blackwork, Realismo e Fine Line. Transformamos ideias em obras de arte exclusivas.">
     
+    <!-- Resource Hints (Preconnect & Preload) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" as="image" href="hero_poster.jpg">
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400&family=Space+Grotesk:wght@500;600&display=swap">
+    
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css?v=3">
-    <link rel="stylesheet" href="css/animations.css?v=3">
-    <link rel="stylesheet" href="css/sections.css?v=3">
+    <link rel="stylesheet" href="css/index.css?v=4">
+    <link rel="stylesheet" href="css/animations.css?v=4">
+    <link rel="stylesheet" href="css/sections.css?v=4">
     
     <!-- FontAwesome (Icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -41,7 +52,7 @@
             <li><a href="#location">Localização</a></li>
         </ul>
         
-        <a href="https://wa.me/5511947511462" target="_blank" class="nav__cta">Agendar Orçamento</a>
+        <a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer" class="nav__cta">Agendar Orçamento</a>
         
         <div class="nav__hamburger" id="nav-toggle">
             <span></span>
@@ -65,64 +76,12 @@
         <!-- Hero Section -->
         <section id="hero">
             <div class="hero__bg">
-                <video id="hero-video" class="hero__bg-image" autoplay muted playsinline>
+                <video id="hero-video" class="hero__bg-image" poster="hero_poster.jpg" preload="metadata" autoplay muted playsinline>
                     <source src="Man_tattooing_woman's_back_1080p_202607151209.mp4" type="video/mp4">
                 </video>
                 <div class="hero__grain"></div>
                 <div class="hero__overlay"></div>
             </div>
-            
-            <script>
-                // Script para o hero (Vídeo em loop e Áudio)
-                document.addEventListener('DOMContentLoaded', () => {
-                    // Lógica de loop de vídeo
-                    const video = document.getElementById('hero-video');
-                    if (video) {
-                        const sources = [
-                            "Man_tattooing_woman's_back_1080p_202607151209.mp4",
-                            "Man_tattooing_woman's_back_202607151207.mp4"
-                        ];
-                        let currentVideo = 0;
-                        
-                        video.addEventListener('ended', () => {
-                            currentVideo = (currentVideo + 1) % sources.length;
-                            video.src = sources[currentVideo];
-                            video.play();
-                        });
-                    }
-
-                    // Lógica de áudio e mute toggle
-                    const audio = document.getElementById('bg-audio');
-                    const soundBtn = document.getElementById('sound-toggle');
-                    const soundIcon = document.getElementById('sound-icon');
-                    
-                    if (soundBtn && audio) {
-                        // Tenta dar autoplay no áudio
-                        audio.volume = 0.5; // Volume a 50%
-                        
-                        let isMuted = false;
-                        
-                        soundBtn.addEventListener('click', () => {
-                            if (audio.paused) {
-                                // Se estiver pausado por bloqueio do navegador, damos play no primeiro clique
-                                audio.play();
-                                isMuted = false;
-                                soundIcon.className = 'fas fa-volume-up';
-                            } else {
-                                // Toggle de mute
-                                isMuted = !isMuted;
-                                audio.muted = isMuted;
-                                
-                                if (isMuted) {
-                                    soundIcon.className = 'fas fa-volume-mute';
-                                } else {
-                                    soundIcon.className = 'fas fa-volume-up';
-                                }
-                            }
-                        });
-                    }
-                });
-            </script>
             
             <div class="hero__bg-word float--slow">ART</div>
             
@@ -137,7 +96,7 @@
                 </p>
                 
                 <div class="hero__buttons">
-                    <a href="https://wa.me/5511947511462" target="_blank" class="btn btn--primary magnetic">
+                    <a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer" class="btn btn--primary magnetic">
                         <i class="fab fa-whatsapp btn-icon"></i> Agendar Orçamento
                     </a>
                     <a href="#gallery" class="btn btn--secondary magnetic">Ver Trabalhos</a>
@@ -151,7 +110,7 @@
                 </div>
                 
                 <!-- Controle de Som -->
-                <button id="sound-toggle" class="sound-toggle magnetic">
+                <button id="sound-toggle" class="sound-toggle magnetic" aria-label="Alternar áudio de fundo">
                     <i class="fas fa-volume-up" id="sound-icon"></i>
                 </button>
 
@@ -168,7 +127,7 @@
                 </div>
             </div>
 
-            <audio id="bg-audio" loop autoplay>
+            <audio id="bg-audio" loop preload="none">
                 <source src="Nocturnal Shadows (trim 0_33-2_54).mp3" type="audio/mpeg">
             </audio>
         </section>
@@ -232,10 +191,10 @@
                 
                 <div class="about__images">
                     <div class="about__img about__img-1 reveal-scale">
-                        <video src="Man_tattooing_client_at_convention_202607151354.mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="Man_tattooing_client_at_convention_202607151354.mp4" preload="none" loop muted playsinline></video>
                     </div>
                     <div class="about__img about__img-2 reveal-scale" style="transition-delay: 0.2s;">
-                        <img src="Man_tattooing_client_at_convention_202607151333.jpeg" alt="Premium Studio Interior">
+                        <img src="Man_tattooing_client_at_convention_202607151333.jpeg" alt="Premium Studio Interior" loading="lazy" decoding="async">
                     </div>
                     <div class="about__img-badge pulse-glow reveal" style="transition-delay: 0.4s;">
                         #01 <span>Studio</span>
@@ -258,7 +217,7 @@
                 <div class="carousel-track" id="horizontal-carousel">
                     <!-- Carousel Items com mídia real -->
                     <div class="carousel-item carousel-item--lg">
-                        <video src="WhatsApp Video 2026-07-15 at 13.41.50.mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="WhatsApp Video 2026-07-15 at 13.41.50.mp4" preload="none" loop muted playsinline></video>
                         <div class="carousel-item__overlay"></div>
                         <div class="carousel-item__caption">
                             <div class="carousel-item__style">Ryan Sp</div>
@@ -267,7 +226,7 @@
                     </div>
                     
                     <div class="carousel-item carousel-item--lg" style="margin-top: -40px;">
-                        <video src="WhatsApp Video 2026-07-15 at 13.41.52.mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="WhatsApp Video 2026-07-15 at 13.41.52.mp4" preload="none" loop muted playsinline></video>
                         <div class="carousel-item__overlay"></div>
                         <div class="carousel-item__caption">
                             <div class="carousel-item__style">Don juan</div>
@@ -276,7 +235,7 @@
                     </div>
                     
                     <div class="carousel-item carousel-item--sm" style="margin-top: 60px;">
-                        <video src="WhatsApp Video 2026-07-15 at 13.41.54.mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="WhatsApp Video 2026-07-15 at 13.41.54.mp4" preload="none" loop muted playsinline></video>
                         <div class="carousel-item__overlay"></div>
                         <div class="carousel-item__caption">
                             <div class="carousel-item__style">Danielzinho do grau</div>
@@ -285,7 +244,7 @@
                     </div>
 
                     <div class="carousel-item carousel-item--lg" style="margin-top: 20px;">
-                        <video src="WhatsApp Video 2026-07-15 at 14.18.03.mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="WhatsApp Video 2026-07-15 at 14.18.03.mp4" preload="none" loop muted playsinline></video>
                         <div class="carousel-item__overlay"></div>
                         <div class="carousel-item__caption">
                             <div class="carousel-item__style">Joaozinho VT</div>
@@ -294,21 +253,19 @@
                     </div>
 
                     <div class="carousel-item carousel-item--lg" style="margin-top: -20px;">
-                        <video src="WhatsApp Video 2026-07-15 at 14.18.03 (1).mp4" autoplay loop muted playsinline></video>
+                        <video class="lazy-video" data-src="WhatsApp Video 2026-07-15 at 14.18.03 (1).mp4" preload="none" loop muted playsinline></video>
                         <div class="carousel-item__overlay"></div>
                         <div class="carousel-item__caption">
                             <div class="carousel-item__style">Mc tuto</div>
                             <div class="carousel-item__tag">MC SP</div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
             
             <div class="styles__carousel-controls" style="margin-top: var(--space-4); margin-bottom: var(--space-12);">
-                <button class="styles__carousel-btn" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="styles__carousel-btn" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                <button class="styles__carousel-btn" id="gallery-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="styles__carousel-btn" id="gallery-next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
@@ -326,54 +283,54 @@
                 <div class="styles__carousel-track" id="expertise-carousel">
                     <!-- Carousel Items: 11 Videos -->
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.51.49.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.51.49.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.04.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.04.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.10.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.10.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.12.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.12.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.21.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.21.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.24.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.24.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.34.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.34.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.43.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.43.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.52.55.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.52.55.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.53.06.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.53.06.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                     <div class="style-card style-video-card">
-                        <video src="WhatsApp Video 2026-07-24 at 11.53.15.mp4" autoplay loop muted playsinline class="style-card__img"></video>
+                        <video class="style-card__img lazy-video" data-src="WhatsApp Video 2026-07-24 at 11.53.15.mp4" preload="none" loop muted playsinline></video>
                         <div class="style-card__overlay"></div>
                     </div>
                 </div>
 
                 <div class="styles__carousel-controls">
-                    <button class="styles__carousel-btn" id="expertise-prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="styles__carousel-btn" id="expertise-next"><i class="fas fa-chevron-right"></i></button>
+                    <button class="styles__carousel-btn" id="expertise-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="styles__carousel-btn" id="expertise-next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -468,7 +425,7 @@
                 <div class="cta__eyebrow">Pronto para começar?</div>
                 <h2 class="cta__title">Sua próxima tatuagem<br>começa <em>aqui.</em></h2>
                 <p class="cta__text">Nossa agenda é limitada. Solicite um orçamento personalizado e reserve sua data diretamente pelo WhatsApp.</p>
-                <a href="https://wa.me/5511947511462" target="_blank" class="cta__btn magnetic">
+                <a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer" class="cta__btn magnetic">
                     <i class="fab fa-whatsapp"></i> <span>Agendar pelo WhatsApp</span>
                 </a>
             </div>
@@ -485,7 +442,7 @@
                 <div class="location__grid">
                     <div class="location__map reveal">
                         <!-- Mapa com endereço real -->
-                        <iframe src="https://maps.google.com/maps?q=R.%20S%C3%ADlvio%20Barbini,%20595%20-%20Conj.%20Res.%20Jos%C3%A9%20Bonif%C3%A1cio,%20S%C3%A3o%20Paulo%20-%20SP,%2008250-650&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://maps.google.com/maps?q=R.%20S%C3%ADlvio%20Barbini,%20595%20-%20Conj.%20Res.%20Jos%C3%A9%20Bonif%C3%A1cio,%20S%C3%A3o%20Paulo%20-%20SP,%2008250-650&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Estúdio Gordon Tattoo"></iframe>
                     </div>
                     
                     <div class="location__card reveal">
@@ -501,7 +458,7 @@
                             <i class="fab fa-whatsapp location__info-icon text-gold"></i>
                             <div>
                                 <div class="location__info-label">WhatsApp</div>
-                                <div class="location__info-value"><a href="https://wa.me/5511947511462">+55 11 94751-1462</a></div>
+                                <div class="location__info-value"><a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer">+55 11 94751-1462</a></div>
                             </div>
                         </div>
                         
@@ -517,7 +474,7 @@
                             <i class="fab fa-instagram location__info-icon text-gold"></i>
                             <div>
                                 <div class="location__info-label">Instagram</div>
-                                <div class="location__info-value"><a href="https://instagram.com/gordontattoo_" target="_blank">@gordontattoo_</a></div>
+                                <div class="location__info-value"><a href="https://instagram.com/gordontattoo_" target="_blank" rel="noopener noreferrer">@gordontattoo_</a></div>
                             </div>
                         </div>
                     </div>
@@ -534,9 +491,9 @@
                     <a href="#" class="footer__logo">Gordon<span>.</span></a>
                     <p class="footer__tagline">A arte definitiva gravada na pele. Estúdio de tatuagem de luxo em São Paulo especializado em exclusividade.</p>
                     <div class="footer__social">
-                        <a href="https://instagram.com/gordontattoo_" target="_blank" class="footer__social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="footer__social-link"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://wa.me/5511947511462" target="_blank" class="footer__social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/gordontattoo_" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
@@ -553,39 +510,39 @@
                 <div>
                     <div class="footer__col-title">Estilos</div>
                     <ul class="footer__links">
-                        <li><a href="#">Blackwork</a></li>
-                        <li><a href="#">Realismo</a></li>
-                        <li><a href="#">Fine Line</a></li>
-                        <li><a href="#">Oriental</a></li>
+                        <li><a href="#styles">Blackwork</a></li>
+                        <li><a href="#styles">Realismo</a></li>
+                        <li><a href="#styles">Fine Line</a></li>
+                        <li><a href="#styles">Oriental</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <div class="footer__col-title">Contato</div>
                     <ul class="footer__links">
-                        <li><a href="https://wa.me/5511947511462">Solicitar Orçamento</a></li>
+                        <li><a href="https://wa.me/5511947511462" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a></li>
                         <li><a href="#location">Localização</a></li>
-                        <li><a href="#">Dúvidas Frequentes</a></li>
+                        <li><a href="#process">Dúvidas Frequentes</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer__bottom">
                 <div class="footer__copyright">&copy; 2026 Gordon Tattoo. Todos os direitos reservados.</div>
-                <div class="footer__credits">Designed with <span>♥</span> for Gordon Tattoo</div>
+                <div class="footer__credits"><a href="https://zionsites.com.br" target="_blank" rel="noopener noreferrer">Desenvolvido por <span>Zion Sites</span></a></div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts (GSAP & Lenis CDN) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="js/main.js?v=3"></script>
-    <script src="js/carousel.js?v=3"></script>
-    <script src="js/expertise.js?v=3"></script>
-    <script src="js/effects.js?v=3"></script>
+    <script defer src="js/main.js?v=4"></script>
+    <script defer src="js/carousel.js?v=4"></script>
+    <script defer src="js/expertise.js?v=4"></script>
+    <script defer src="js/effects.js?v=4"></script>
 </body>
 </html>

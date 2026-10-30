@@ -15,47 +15,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isTouchDevice && cursor && cursorFollower) {
         let mouseX = 0;
         let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
         let followerX = 0;
         let followerY = 0;
+        let cursorScale = 1;
+        let rafId = null;
         
-        // Track mouse movement
+        // Animate follower with delay only while moving
+        const animateFollower = () => {
+            const dx = mouseX - followerX;
+            const dy = mouseY - followerY;
+            
+            followerX += dx * 0.12;
+            followerY += dy * 0.12;
+            
+            cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
+            
+            if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+                rafId = requestAnimationFrame(animateFollower);
+            } else {
+                rafId = null;
+            }
+        };
+        
+        // Track mouse movement passively
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Move cursor immediately
-            cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-        });
-        
-        // Animate follower with delay
-        const animateFollower = () => {
-            // Easing for smooth follow effect
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
             
-            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
-            
-            requestAnimationFrame(animateFollower);
-        };
-        
-        animateFollower();
+            if (!rafId) {
+                rafId = requestAnimationFrame(animateFollower);
+            }
+        }, { passive: true });
         
         // Hover effects on interactive elements
-        const iteractiveElements = document.querySelectorAll('a, button, .carousel-item');
+        const interactiveElements = document.querySelectorAll('a, button, .carousel-item');
         
-        iteractiveElements.forEach(el => {
+        interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1.5)`;
-                cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%) scale(1.5)`;
+                cursorScale = 1.5;
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
+                cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
                 cursorFollower.style.borderColor = 'transparent';
                 cursorFollower.style.background = 'rgba(201, 168, 76, 0.1)';
             });
             
             el.addEventListener('mouseleave', () => {
-                cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
-                cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%) scale(1)`;
+                cursorScale = 1;
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
+                cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
                 cursorFollower.style.borderColor = 'rgba(201, 168, 76, 0.4)';
                 cursorFollower.style.background = 'transparent';
             });
@@ -69,39 +78,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Magnetic Buttons
     const magneticElements = document.querySelectorAll('.magnetic');
     
-    magneticElements.forEach(el => {
-        if (!isTouchDevice) {
+    if (!isTouchDevice && typeof gsap !== 'undefined') {
+        magneticElements.forEach(el => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                // Move button slightly towards cursor
                 gsap.to(el, {
                     x: x * 0.3,
                     y: y * 0.3,
                     duration: 0.3,
-                    ease: 'power2.out'
+                    ease: 'power2.out',
+                    overwrite: 'auto'
                 });
                 
-                // Move text inside button even more
                 const content = el.querySelector('span, i');
                 if (content) {
                     gsap.to(content, {
                         x: x * 0.15,
                         y: y * 0.15,
                         duration: 0.3,
-                        ease: 'power2.out'
+                        ease: 'power2.out',
+                        overwrite: 'auto'
                     });
                 }
-            });
+            }, { passive: true });
             
             el.addEventListener('mouseleave', () => {
                 gsap.to(el, {
                     x: 0,
                     y: 0,
                     duration: 0.7,
-                    ease: 'elastic.out(1, 0.3)'
+                    ease: 'elastic.out(1, 0.3)',
+                    overwrite: 'auto'
                 });
                 
                 const content = el.querySelector('span, i');
@@ -110,11 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         x: 0,
                         y: 0,
                         duration: 0.7,
-                        ease: 'elastic.out(1, 0.3)'
+                        ease: 'elastic.out(1, 0.3)',
+                        overwrite: 'auto'
                     });
                 }
             });
-        }
-    });
+        });
+    }
 
 });
